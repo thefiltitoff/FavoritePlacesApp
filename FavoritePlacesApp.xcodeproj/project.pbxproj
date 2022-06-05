@@ -11,6 +11,7 @@
 		2BD0DD0F284AAA7D00368BCE /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0DD0E284AAA7D00368BCE /* CustomTableViewCell.swift */; };
 		2BD0DD12284AB26900368BCE /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0DD11284AB26900368BCE /* Place.swift */; };
 		2BD0DD16284BE60E00368BCE /* NewPlaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0DD15284BE60E00368BCE /* NewPlaceTableViewController.swift */; };
+		2BD0DD38284CEDD500368BCE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0DD37284CEDD500368BCE /* StorageManager.swift */; };
 		2BDC6E10284A8891000DBD54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDC6E0F284A8891000DBD54 /* AppDelegate.swift */; };
 		2BDC6E12284A8891000DBD54 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDC6E11284A8891000DBD54 /* SceneDelegate.swift */; };
 		2BDC6E17284A8891000DBD54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BDC6E15284A8891000DBD54 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		2BD0DD0E284AAA7D00368BCE /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		2BD0DD11284AB26900368BCE /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		2BD0DD15284BE60E00368BCE /* NewPlaceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceTableViewController.swift; sourceTree = "<group>"; };
+		2BD0DD37284CEDD500368BCE /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		2BDC6E0C284A8891000DBD54 /* FavoritePlacesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FavoritePlacesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BDC6E0F284A8891000DBD54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BDC6E11284A8891000DBD54 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				2BDC6E18284A8894000DBD54 /* Assets.xcassets */,
 				2BDC6E1A284A8894000DBD54 /* LaunchScreen.storyboard */,
 				2BDC6E1D284A8894000DBD54 /* Info.plist */,
+				2BD0DD37284CEDD500368BCE /* StorageManager.swift */,
 			);
 			path = FavoritePlacesApp;
 			sourceTree = "<group>";
@@ -105,7 +108,6 @@
 				A572BCDBCB6726839C11265B /* Pods-FavoritePlacesApp.debug.xcconfig */,
 				BD6F52DC4B094F1D49E8374B /* Pods-FavoritePlacesApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -227,6 +229,7 @@
 				2BD0DD16284BE60E00368BCE /* NewPlaceTableViewController.swift in Sources */,
 				2BDC6E10284A8891000DBD54 /* AppDelegate.swift in Sources */,
 				2BD0DD0D284A8EE600368BCE /* MainTableViewController.swift in Sources */,
+				2BD0DD38284CEDD500368BCE /* StorageManager.swift in Sources */,
 				2BD0DD0F284AAA7D00368BCE /* CustomTableViewCell.swift in Sources */,
 				2BDC6E12284A8891000DBD54 /* SceneDelegate.swift in Sources */,
 				2BD0DD12284AB26900368BCE /* Place.swift in Sources */,

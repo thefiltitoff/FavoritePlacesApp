@@ -11,7 +11,7 @@ import UIKit
 
 class NewPlaceTableViewController: UITableViewController {
     
-    var newPlace: Place?
+    
     var imageIsChanged = false
 
     @IBOutlet var placeNameTextField: UITextField!
@@ -64,6 +64,7 @@ class NewPlaceTableViewController: UITableViewController {
     }
     
     func saveNewPlace() {
+
         var image: UIImage?
         
         if imageIsChanged {
@@ -71,13 +72,17 @@ class NewPlaceTableViewController: UITableViewController {
         } else {
             image = #imageLiteral(resourceName: "imagePlaceholder")
         }
-        newPlace = Place(
+        
+        let imageData = image?.pngData()
+        
+        let newPlace = Place(
             name: placeNameTextField.text!, // Because if this field will be empty, save button would not be enable
             location: placeLocationTextField.text,
             type: placeTypeTextField.text,
-            image: image,
-            restaurantImage: nil
+            imageData: imageData
         )
+
+        StorageManager.saveObject(newPlace)
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
