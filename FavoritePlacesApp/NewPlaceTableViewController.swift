@@ -11,7 +11,7 @@ import UIKit
 
 class NewPlaceTableViewController: UITableViewController {
     
-    
+    var currentPlace: Place?
     var imageIsChanged = false
 
     @IBOutlet var placeNameTextField: UITextField!
@@ -29,7 +29,7 @@ class NewPlaceTableViewController: UITableViewController {
         saveButton.isEnabled = false
         
         placeNameTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-
+        setupEditScreen()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -63,8 +63,7 @@ class NewPlaceTableViewController: UITableViewController {
         }
     }
     
-    func saveNewPlace() {
-
+    func savePlace() {
         var image: UIImage?
         
         if imageIsChanged {
@@ -81,8 +80,46 @@ class NewPlaceTableViewController: UITableViewController {
             type: placeTypeTextField.text,
             imageData: imageData
         )
-
-        StorageManager.saveObject(newPlace)
+        
+        if currentPlace != nil {
+            try! realm.write {
+                currentPlace?.name = newPlace.name
+                currentPlace?.location = newPlace.location
+                currentPlace?.type = newPlace.type
+                currentPlace?.imageData = newPlace.imageData
+                
+            }
+        } else {
+            StorageManager.saveObject(newPlace)
+        }
+    }
+    
+    private func setupEditScreen() {
+        if currentPlace != nil {
+            guard let data = currentPlace?.imageData, let image = UIImage(data: data) else { return }
+            
+            setupNavigationBar()
+            imageIsChanged = true
+            
+            photoImageView.image = image
+            photoImageView.contentMode = .scaleAspectFill
+            placeNameTextField.text = currentPlace?.name
+            placeLocationTextField.text = currentPlace?.location
+            placeTypeTextField.text = currentPlace?.type
+            
+            
+        }
+    }
+    
+    private func setupNavigationBar() {
+        if let topItem = navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
+        
+        navigationItem.leftBarButtonItem = nil
+        title = currentPlace?.name
+        saveButton.isEnabled = true
+        
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

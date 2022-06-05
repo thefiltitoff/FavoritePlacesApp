@@ -68,6 +68,7 @@
                                     <outlet property="nameLabel" destination="kqo-uw-khA" id="mEt-8o-xJS"/>
                                     <outlet property="placeImageView" destination="xsY-28-7bL" id="nuC-HK-X0H"/>
                                     <outlet property="typeLabel" destination="Aya-PZ-1fW" id="Xim-cT-Wke"/>
+                                    <segue destination="ETP-ll-mg3" kind="show" identifier="showDetail" id="K3m-p8-HPu"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -76,7 +77,7 @@
                             <outlet property="delegate" destination="KbM-4B-bhy" id="IJM-lH-V6a"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My places" id="2vS-ji-o27">
+                    <navigationItem key="navigationItem" title="My places" largeTitleDisplayMode="never" id="2vS-ji-o27">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="l7J-1l-SzG">
                             <connections>
                                 <segue destination="UlZ-5J-jfU" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="75h-KF-ygr"/>
@@ -233,7 +234,7 @@
                             <outlet property="delegate" destination="ETP-ll-mg3" id="2wp-eq-IIE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Place" id="9Uw-Jq-5pF">
+                    <navigationItem key="navigationItem" title="New Place" largeTitleDisplayMode="always" id="9Uw-Jq-5pF">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="jh7-j3-0KF">
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="ETP-ll-mg3" id="VCR-XT-Y6R"/>
@@ -256,7 +257,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8tM-jh-dUQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="ay8-tg-tAe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2150.625" y="-807.04225352112678"/>
+            <point key="canvasLocation" x="1359" y="-807"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tWh-ng-mAr">
@@ -272,14 +273,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a0a-jY-cuy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1358" y="-807"/>
+            <point key="canvasLocation" x="1361" y="-1635"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Eo-vr-AIb">
             <objects>
                 <navigationController id="P75-Z3-e8h" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hMC-Ch-M80">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="hMC-Ch-M80">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="24"/>
@@ -294,6 +295,9 @@
             <point key="canvasLocation" x="-225" y="-806"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="K3m-p8-HPu"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Photo" width="195" height="196"/>
         <systemColor name="systemBackgroundColor">
