@@ -15,6 +15,8 @@ class NewPlaceTableViewController: UITableViewController {
     @IBOutlet var placeLocationTextField: UITextField!
     @IBOutlet var placeTypeTextField: UITextField!
     
+    @IBOutlet var photoImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
@@ -56,14 +58,27 @@ extension NewPlaceTableViewController: UITextFieldDelegate {
 }
 
 // MARK: Work with image
-extension NewPlaceTableViewController {
+extension NewPlaceTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     func chooseImagePicker(source: UIImagePickerController.SourceType) {
         if UIImagePickerController.isSourceTypeAvailable(source) {
             let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
             imagePicker.allowsEditing = true
             imagePicker.sourceType = source
             present(imagePicker, animated: true)
         }
         
     }
+    
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        photoImageView.image = info[.editedImage] as? UIImage
+        photoImageView.contentMode = .scaleAspectFill
+        photoImageView.clipsToBounds = true
+        dismiss(animated: true)
+    }
+    
 }

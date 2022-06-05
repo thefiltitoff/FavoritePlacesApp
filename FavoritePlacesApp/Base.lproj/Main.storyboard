@@ -242,6 +242,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="euT-ct-X5H"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="photoImageView" destination="Avk-WF-2Up" id="p2P-Vl-5Zz"/>
                         <outlet property="placeLocationTextField" destination="25U-bv-U2Q" id="lPZ-kg-h8D"/>
                         <outlet property="placeNameTextField" destination="b9f-Wt-frD" id="mLA-5l-6Kz"/>
                         <outlet property="placeTypeTextField" destination="5KT-ei-Hu0" id="1wo-Af-9zx"/>
