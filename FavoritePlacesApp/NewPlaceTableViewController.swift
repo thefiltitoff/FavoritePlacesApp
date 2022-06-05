@@ -10,6 +10,9 @@
 import UIKit
 
 class NewPlaceTableViewController: UITableViewController {
+    
+    var newPlace: Place?
+    var imageIsChanged = false
 
     @IBOutlet var placeNameTextField: UITextField!
     @IBOutlet var placeLocationTextField: UITextField!
@@ -17,9 +20,15 @@ class NewPlaceTableViewController: UITableViewController {
     
     @IBOutlet var photoImageView: UIImageView!
     
+    @IBOutlet var saveButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
+        
+        saveButton.isEnabled = false
+        
+        placeNameTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
 
     }
     
@@ -53,6 +62,29 @@ class NewPlaceTableViewController: UITableViewController {
            view.endEditing(true)
         }
     }
+    
+    func saveNewPlace() {
+        var image: UIImage?
+        
+        if imageIsChanged {
+            image = photoImageView.image
+        } else {
+            image = #imageLiteral(resourceName: "imagePlaceholder")
+        }
+        newPlace = Place(
+            name: placeNameTextField.text!, // Because if this field will be empty, save button would not be enable
+            location: placeLocationTextField.text,
+            type: placeTypeTextField.text,
+            image: image,
+            restaurantImage: nil
+        )
+    }
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true)
+    }
+    
+
 }
 
 // MARK: Work with text field Delegate
@@ -61,6 +93,14 @@ extension NewPlaceTableViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    @objc private func textFieldChanged() {
+        if placeNameTextField.text?.isEmpty == false {
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
+        }
     }
 }
 
@@ -85,6 +125,9 @@ extension NewPlaceTableViewController: UIImagePickerControllerDelegate, UINaviga
         photoImageView.image = info[.editedImage] as? UIImage
         photoImageView.contentMode = .scaleAspectFill
         photoImageView.clipsToBounds = true
+        
+        imageIsChanged = true
+        
         dismiss(animated: true)
     }
     
