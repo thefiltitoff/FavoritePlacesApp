@@ -257,6 +257,9 @@
                                     <segment title="Date"/>
                                     <segment title="Name"/>
                                 </segments>
+                                <connections>
+                                    <action selector="sortSelectionTapped:" destination="0AU-ja-w6C" eventType="valueChanged" id="caX-pf-oUc"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3gi-0P-dGK"/>
@@ -272,7 +275,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My places" largeTitleDisplayMode="never" id="eMw-7N-pxP">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="ZA" id="fin-Qz-B2J"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="AZ" id="fin-Qz-B2J">
+                            <connections>
+                                <action selector="reverseSortingTapped:" destination="0AU-ja-w6C" id="l9A-9b-V3n"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="QdG-MN-Mhp">
                             <connections>
                                 <segue destination="UlZ-5J-jfU" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="f43-fl-Jet"/>
@@ -280,6 +287,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="segmentedControl" destination="tEt-o4-RZd" id="r1S-ch-4n9"/>
+                        <outlet property="sortingButton" destination="fin-Qz-B2J" id="6CP-R8-sc9"/>
                         <outlet property="tableView" destination="TAs-9U-4TR" id="XkV-YB-DU2"/>
                     </connections>
                 </viewController>
@@ -327,8 +336,8 @@
         <segue reference="EgG-B2-XsQ"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="AZ" width="25" height="24"/>
         <image name="Photo" width="195" height="196"/>
-        <image name="ZA" width="25" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
