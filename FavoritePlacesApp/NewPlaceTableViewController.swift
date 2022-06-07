@@ -11,7 +11,7 @@ import UIKit
 
 class NewPlaceTableViewController: UITableViewController {
     
-    var currentPlace: Place?
+    var currentPlace: Place!
     var imageIsChanged = false
 
     @IBOutlet var placeNameTextField: UITextField!
@@ -21,6 +21,7 @@ class NewPlaceTableViewController: UITableViewController {
     @IBOutlet var photoImageView: UIImageView!
     
     @IBOutlet var saveButton: UIBarButtonItem!
+    @IBOutlet var ratingControlStackView: RaitingControlStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +84,8 @@ class NewPlaceTableViewController: UITableViewController {
             name: placeNameTextField.text!, // Because if this field will be empty, save button would not be enable
             location: placeLocationTextField.text,
             type: placeTypeTextField.text,
-            imageData: imageData
+            imageData: imageData,
+            rating: Double(ratingControlStackView.raiting)
         )
         
         if currentPlace != nil {
@@ -92,6 +94,7 @@ class NewPlaceTableViewController: UITableViewController {
                 currentPlace?.location = newPlace.location
                 currentPlace?.type = newPlace.type
                 currentPlace?.imageData = newPlace.imageData
+                currentPlace?.rating = newPlace.rating
                 
             }
         } else {
@@ -124,6 +127,8 @@ class NewPlaceTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = nil
         title = currentPlace?.name
         saveButton.isEnabled = true
+        
+        ratingControlStackView.raiting = Int(currentPlace.rating)
         
     }
     
