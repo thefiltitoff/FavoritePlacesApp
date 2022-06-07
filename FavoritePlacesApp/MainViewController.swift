@@ -64,7 +64,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         
         var place = Place()
-//        let place = places[indexPath.row]
         
         if isFiltering {
             place = filteredPlaces[indexPath.row]
@@ -85,6 +84,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // MARK: - Table view delegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
@@ -100,7 +103,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            
             let place: Place
+            
             if isFiltering {
                 place = filteredPlaces[indexPath.row]
             } else {
@@ -109,7 +114,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             guard let newPlaceVC = segue.destination as? NewPlaceTableViewController else { return }
             
-//            let place = places[indexPath.row]
             newPlaceVC.currentPlace = place
         }
         
