@@ -78,24 +78,21 @@ class NewPlaceTableViewController: UITableViewController {
         }
     }
     
-    // MARK: Navigatio
+    // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != "showMap" {
-            return
-        }
+        if segue.identifier != "showMap" { return }
         
         guard let mapVC = segue.destination as? MapViewController else { return }
-        mapVC.place = currentPlace
+        
+        mapVC.place.name = placeNameTextField.text!
+        mapVC.place.location = placeLocationTextField.text
+        mapVC.place.type = placeTypeTextField.text
+        mapVC.place.imageData = photoImageView.image?.pngData()
+        
     }
     
     func savePlace() {
-        var image: UIImage?
-        
-        if imageIsChanged {
-            image = photoImageView.image
-        } else {
-            image = #imageLiteral(resourceName: "imagePlaceholder")
-        }
+        let image = imageIsChanged ? photoImageView.image : #imageLiteral(resourceName: "imagePlaceholder")
         
         let imageData = image?.pngData()
         
