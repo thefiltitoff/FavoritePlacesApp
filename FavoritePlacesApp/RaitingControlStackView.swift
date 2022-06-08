@@ -9,6 +9,7 @@
 
 import UIKit
 
+// MARK: This class was created for using custom rating buttons
 @IBDesignable class RaitingControlStackView: UIStackView {
     
     // MARK: Prooperties
@@ -36,11 +37,13 @@ import UIKit
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupButtons()
     }
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
+        
         setupButtons()
     }
     

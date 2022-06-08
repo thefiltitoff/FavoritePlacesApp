@@ -56,29 +56,24 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             return filteredPlaces.count
         }
         
-        return places.isEmpty ? 0 : places.count
+        return places.count
     }
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         
-        var place = Place()
         
-        if isFiltering {
-            place = filteredPlaces[indexPath.row]
-        } else {
-            place = places[indexPath.row]
-        }
+        let place = isFiltering
+        ? filteredPlaces[indexPath.row]
+        : places[indexPath.row]
 
         cell.nameLabel.text = place.name
         cell.locationLabel.text = place.location
         cell.typeLabel.text = place.type
         cell.placeImageView.image = UIImage(data: place.imageData!) // This nevel will be nil
+        cell.cosmosView.rating = place.rating
 
-
-        cell.placeImageView.layer.cornerRadius = cell.placeImageView.frame.size.height / 2
-        cell.placeImageView.clipsToBounds = true
 
         return cell
     }
@@ -104,13 +99,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         if segue.identifier == "showDetail" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
             
-            let place: Place
-            
-            if isFiltering {
-                place = filteredPlaces[indexPath.row]
-            } else {
-                place = places[indexPath.row]
-            }
+            let place = isFiltering
+            ? filteredPlaces[indexPath.row]
+            : places[indexPath.row]
             
             guard let newPlaceVC = segue.destination as? NewPlaceTableViewController else { return }
             

@@ -8,13 +8,24 @@
 
 
 import UIKit
+import Cosmos
 
 class CustomTableViewCell: UITableViewCell {
 
-    @IBOutlet var placeImageView: UIImageView!
+    @IBOutlet var placeImageView: UIImageView! {
+        didSet {
+            placeImageView.layer.cornerRadius = placeImageView.frame.size.height / 2
+            placeImageView.clipsToBounds = true
+        }
+    }
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var typeLabel: UILabel!
     
+    @IBOutlet var cosmosView: CosmosView! {
+        didSet {
+            cosmosView.settings.updateOnTouch = false
+        }
+    }
 }

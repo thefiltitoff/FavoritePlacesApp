@@ -8,11 +8,13 @@
 
 
 import UIKit
+import Cosmos
 
 class NewPlaceTableViewController: UITableViewController {
     
     var currentPlace: Place!
     var imageIsChanged = false
+    var currentRating = 0.0
 
     @IBOutlet var placeNameTextField: UITextField!
     @IBOutlet var placeLocationTextField: UITextField!
@@ -21,7 +23,9 @@ class NewPlaceTableViewController: UITableViewController {
     @IBOutlet var photoImageView: UIImageView!
     
     @IBOutlet var saveButton: UIBarButtonItem!
-    @IBOutlet var ratingControlStackView: RaitingControlStackView!
+//    @IBOutlet var ratingControlStackView: RaitingControlStackView!
+    
+    @IBOutlet var cosmosView: CosmosView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +40,11 @@ class NewPlaceTableViewController: UITableViewController {
         
         placeNameTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         setupEditScreen()
+        
+//        cosmosView.settings.fillMode = .precise
+        cosmosView.didTouchCosmos = { rating in
+            self.currentRating = rating
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -85,7 +94,7 @@ class NewPlaceTableViewController: UITableViewController {
             location: placeLocationTextField.text,
             type: placeTypeTextField.text,
             imageData: imageData,
-            rating: Double(ratingControlStackView.raiting)
+            rating: currentRating
         )
         
         if currentPlace != nil {
@@ -114,6 +123,7 @@ class NewPlaceTableViewController: UITableViewController {
             placeNameTextField.text = currentPlace?.name
             placeLocationTextField.text = currentPlace?.location
             placeTypeTextField.text = currentPlace?.type
+            cosmosView.rating = currentPlace.rating
             
             
         }
@@ -128,7 +138,7 @@ class NewPlaceTableViewController: UITableViewController {
         title = currentPlace?.name
         saveButton.isEnabled = true
         
-        ratingControlStackView.raiting = Int(currentPlace.rating)
+//        ratingControlStackView.raiting = Int(currentPlace.rating)
         
     }
     
