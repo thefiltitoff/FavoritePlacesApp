@@ -17,6 +17,8 @@ class MapViewController: UIViewController {
     let annotationIdentifier = "annotationIdentifier"
     let locationManager = CLLocationManager()
     
+    let distantionInMeters = 1_000.00
+    
     @IBOutlet var mapView: MKMapView!
     
     override func viewDidLoad() {
@@ -30,6 +32,18 @@ class MapViewController: UIViewController {
     
     @IBAction func closeButtonPressed() {
         dismiss(animated: true)
+    }
+    
+    @IBAction func centerViewByUserLocation() {
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion(center: location,
+                                            latitudinalMeters: distantionInMeters,
+                                            longitudinalMeters: distantionInMeters
+            )
+            
+            mapView.setRegion(region, animated: true)
+        }
+        
     }
     
     private func setupPlaceMark() {

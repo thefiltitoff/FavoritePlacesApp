@@ -253,6 +253,23 @@
                                     <action selector="closeButtonPressed" destination="zjl-5F-gYg" eventType="touchUpInside" id="2ay-rI-BBc"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRa-tt-Ox5">
+                                <rect key="frame" x="349" y="787" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="Nd8-I6-ffz"/>
+                                    <constraint firstAttribute="height" constant="35" id="lAZ-Ym-gSV"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="Location"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="centerViewByUserLocation" destination="zjl-5F-gYg" eventType="touchUpInside" id="Wnz-hs-cYq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aGv-QJ-3C9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -262,6 +279,8 @@
                             <constraint firstItem="QCb-yk-1Wm" firstAttribute="leading" secondItem="aGv-QJ-3C9" secondAttribute="leading" id="FRv-Qz-3cd"/>
                             <constraint firstItem="QCb-yk-1Wm" firstAttribute="trailing" secondItem="aGv-QJ-3C9" secondAttribute="trailing" id="Kf7-OQ-fQm"/>
                             <constraint firstAttribute="bottom" secondItem="QCb-yk-1Wm" secondAttribute="bottom" id="VjP-KO-MHr"/>
+                            <constraint firstItem="aGv-QJ-3C9" firstAttribute="bottom" secondItem="MRa-tt-Ox5" secondAttribute="bottom" constant="40" id="jId-ko-lYX"/>
+                            <constraint firstItem="aGv-QJ-3C9" firstAttribute="trailing" secondItem="MRa-tt-Ox5" secondAttribute="trailing" constant="30" id="kpg-hL-w1Z"/>
                             <constraint firstItem="QCb-yk-1Wm" firstAttribute="top" secondItem="8tq-a4-D7E" secondAttribute="top" id="uLC-Sn-dtw"/>
                         </constraints>
                     </view>
@@ -469,6 +488,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AZ" width="25" height="24"/>
+        <image name="Location" width="32" height="32"/>
         <image name="Photo" width="195" height="196"/>
         <image name="map" width="50" height="50"/>
         <systemColor name="systemBackgroundColor">
