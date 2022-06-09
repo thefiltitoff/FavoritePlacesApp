@@ -9,11 +9,13 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class MapViewController: UIViewController {
     
     var place = Place()
     let annotationIdentifier = "annotationIdentifier"
+    let locationManager = CLLocationManager()
     
     @IBOutlet var mapView: MKMapView!
     
@@ -22,6 +24,8 @@ class MapViewController: UIViewController {
         
         mapView.delegate = self
         setupPlaceMark()
+        
+        checkLocationServices()
     }
     
     @IBAction func closeButtonPressed() {
@@ -55,6 +59,49 @@ class MapViewController: UIViewController {
         }
     }
     
+    private func checkLocationServices() {
+        if CLLocationManager.locationServicesEnabled() {
+            setupLocationManager()
+            checkLocationAuth()
+        } else {
+            // Show alert
+        }
+        
+    }
+    
+    private func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    private func checkLocationAuth() {
+        let authorizationStatus: CLAuthorizationStatus
+
+        if #available(iOS 14, *) {
+            authorizationStatus = locationManager.authorizationStatus
+        } else {
+            authorizationStatus = CLLocationManager.authorizationStatus()
+        }
+        
+        switch authorizationStatus {
+        case .authorizedWhenInUse:
+            mapView.showsUserLocation = true
+            break
+        case .denied:
+            // Show alert
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            //Show alert
+            break
+        case .authorizedAlways:
+            break
+        @unknown default:
+            print("New case is avalaible")
+        }
+    }
+    
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -77,5 +124,11 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         return annotationView
+    }
+}
+
+extension MapViewController: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationAuth()
     }
 }
