@@ -18,14 +18,18 @@ class MapViewController: UIViewController {
     let locationManager = CLLocationManager()
     
     let distantionInMeters = 1_000.00
+    var incomeSegueIndentifier = ""
     
     @IBOutlet var mapView: MKMapView!
+    @IBOutlet var mapPinImage: UIImageView!
+    @IBOutlet var addressLabel: UILabel!
+    @IBOutlet var doneButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapView.delegate = self
-        setupPlaceMark()
+        setupMapView()
         
         checkLocationServices()
     }
@@ -35,15 +39,19 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func centerViewByUserLocation() {
-        if let location = locationManager.location?.coordinate {
-            let region = MKCoordinateRegion(center: location,
-                                            latitudinalMeters: distantionInMeters,
-                                            longitudinalMeters: distantionInMeters
-            )
-            
-            mapView.setRegion(region, animated: true)
+        showUserLocation()
+    }
+    
+    @IBAction func doneButtonPressed() {
+    }
+    
+    private func setupMapView() {
+        if incomeSegueIndentifier == "showPlace" {
+            setupPlaceMark()
+            mapPinImage.isHidden = true
+            addressLabel.isHidden = true
+            doneButton.isHidden = true
         }
-        
     }
     
     private func setupPlaceMark() {
@@ -105,6 +113,7 @@ class MapViewController: UIViewController {
         switch authorizationStatus {
         case .authorizedWhenInUse:
             mapView.showsUserLocation = true
+            if incomeSegueIndentifier == "getAddress" { showUserLocation() }
             break
         case .denied:
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -132,6 +141,17 @@ class MapViewController: UIViewController {
         
         alertController.addAction(okAction)
         present(alertController, animated: true)
+    }
+    
+    private func showUserLocation() {
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion(center: location,
+                                            latitudinalMeters: distantionInMeters,
+                                            longitudinalMeters: distantionInMeters
+            )
+            
+            mapView.setRegion(region, animated: true)
+        }
     }
     
 }
