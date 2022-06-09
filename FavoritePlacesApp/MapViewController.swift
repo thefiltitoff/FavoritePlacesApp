@@ -27,6 +27,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addressLabel.text = ""
         
         mapView.delegate = self
         setupMapView()
@@ -143,6 +144,13 @@ class MapViewController: UIViewController {
         present(alertController, animated: true)
     }
     
+    private func getCenterLocation(for mapView: MKMapView) -> CLLocation {
+        let latitude = mapView.centerCoordinate.latitude
+        let longitude = mapView.centerCoordinate.longitude
+        
+        return CLLocation(latitude: latitude, longitude: longitude)
+    }
+    
     private func showUserLocation() {
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion(center: location,
@@ -176,6 +184,40 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let center = getCenterLocation(for: mapView)
+        let geocoder = CLGeocoder()
+        
+        geocoder.reverseGeocodeLocation(center) { placemarks, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            guard let placemarks = placemarks else { return }
+            let placemark = placemarks.first
+            let city = placemark?.locality
+            let streetName = placemark?.thoroughfare
+            let numberBuild =  placemark?.subThoroughfare
+            
+            DispatchQueue.main.async {
+                if city != nil && streetName != nil && numberBuild != nil {
+                    self.addressLabel.text = "\(city!), \(streetName!), \(numberBuild!)"
+                    
+                } else if streetName != nil && numberBuild != nil {
+                    self.addressLabel.text = "\(streetName!), \(numberBuild!)"
+                    
+                }  else if streetName != nil {
+                    self.addressLabel.text = "\(streetName!)"
+                    
+                } else {
+                    self.addressLabel.text = ""
+                }
+                
+            }
+        }
     }
 }
 
