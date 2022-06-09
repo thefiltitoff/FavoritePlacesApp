@@ -87,6 +87,7 @@ class NewPlaceTableViewController: UITableViewController {
         else { return }
         
         mapVC.incomeSegueIndentifier = indentifier
+        mapVC.mapViewControllerDelegate = self
         
         if indentifier == "showPlace" {
             mapVC.place.name = placeNameTextField.text!
@@ -206,4 +207,10 @@ extension NewPlaceTableViewController: UIImagePickerControllerDelegate, UINaviga
         dismiss(animated: true)
     }
     
+}
+
+extension NewPlaceTableViewController: MapViewControllerDelegate {
+    func getAddress(address: String?) {
+        placeLocationTextField.text = address
+    }
 }
