@@ -11,10 +11,6 @@ import UIKit
 import MapKit
 import CoreLocation
 
-protocol MapViewControllerDelegate {
-    func getAddress(address: String?)
-}
-
 class MapViewController: UIViewController {
     
     let mapManager = MapManager()
@@ -52,6 +48,22 @@ class MapViewController: UIViewController {
         setupMapView()
     }
     
+    private func setupMapView() {
+        routeButton.isHidden = true
+        
+        mapManager.checkLocationServices(mapView: mapView, segueIdentifier: incomeSegueIndentifier) {
+            mapManager.locationManager.delegate = self
+        }
+        
+        if incomeSegueIndentifier == "showPlace" {
+            mapManager.setupPlaceMark(place: place, mapView: mapView)
+            mapPinImage.isHidden = true
+            addressLabel.isHidden = true
+            doneButton.isHidden = true
+            routeButton.isHidden = false
+        }
+    }
+    
     @IBAction func closeButtonPressed() {
         dismiss(animated: true)
     }
@@ -70,24 +82,9 @@ class MapViewController: UIViewController {
             self.previousLocation = location
         }
     }
-    
-    private func setupMapView() {
-        routeButton.isHidden = true
-        
-        mapManager.checkLocationServices(mapView: mapView, segueIdentifier: incomeSegueIndentifier) {
-            mapManager.locationManager.delegate = self
-        }
-        
-        if incomeSegueIndentifier == "showPlace" {
-            mapManager.setupPlaceMark(place: place, mapView: mapView)
-            mapPinImage.isHidden = true
-            addressLabel.isHidden = true
-            doneButton.isHidden = true
-            routeButton.isHidden = false
-        }
-    }
 }
 
+// MARK: Work with MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !(annotation is MKUserLocation) else { return nil }
@@ -163,6 +160,7 @@ extension MapViewController: MKMapViewDelegate {
     }
 }
 
+// MARK: Work with CLLocationManagerDelegate
 extension MapViewController: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         mapManager.checkLocationAuth(mapView: mapView,

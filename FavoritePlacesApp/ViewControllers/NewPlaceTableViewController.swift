@@ -23,7 +23,6 @@ class NewPlaceTableViewController: UITableViewController {
     @IBOutlet var photoImageView: UIImageView!
     
     @IBOutlet var saveButton: UIBarButtonItem!
-//    @IBOutlet var ratingControlStackView: RaitingControlStackView!
     
     @IBOutlet var cosmosView: CosmosView!
     
@@ -41,7 +40,6 @@ class NewPlaceTableViewController: UITableViewController {
         placeNameTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         setupEditScreen()
         
-//        cosmosView.settings.fillMode = .precise
         cosmosView.didTouchCosmos = { rating in
             self.currentRating = rating
         }
@@ -151,9 +149,6 @@ class NewPlaceTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = nil
         title = currentPlace?.name
         saveButton.isEnabled = true
-        
-//        ratingControlStackView.raiting = Int(currentPlace.rating)
-        
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
@@ -209,6 +204,7 @@ extension NewPlaceTableViewController: UIImagePickerControllerDelegate, UINaviga
     
 }
 
+// MARK: Work with MapVCDelegate
 extension NewPlaceTableViewController: MapViewControllerDelegate {
     func getAddress(address: String?) {
         placeLocationTextField.text = address

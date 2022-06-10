@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2B1CD520284F526300397D59 /* RaitingControlStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1CD51F284F526300397D59 /* RaitingControlStackView.swift */; };
 		2B8AB8FE2852973B00B616E9 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AB8FD2852973B00B616E9 /* MapManager.swift */; };
+		2B8AB9082853CFCE00B616E9 /* MapViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AB9072853CFCE00B616E9 /* MapViewControllerDelegate.swift */; };
 		2BA575DD28513AEE00F0EB93 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA575DC28513AEE00F0EB93 /* MapViewController.swift */; };
 		2BD0DD0D284A8EE600368BCE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0DD0C284A8EE600368BCE /* MainViewController.swift */; };
 		2BD0DD0F284AAA7D00368BCE /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0DD0E284AAA7D00368BCE /* CustomTableViewCell.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		2B1CD51F284F526300397D59 /* RaitingControlStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaitingControlStackView.swift; sourceTree = "<group>"; };
 		2B8AB8FD2852973B00B616E9 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
+		2B8AB9072853CFCE00B616E9 /* MapViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerDelegate.swift; sourceTree = "<group>"; };
 		2BA575DC28513AEE00F0EB93 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		2BD0DD0C284A8EE600368BCE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2BD0DD0E284AAA7D00368BCE /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
@@ -127,6 +129,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		2B8AB9062853CFA900B616E9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				2B8AB9072853CFCE00B616E9 /* MapViewControllerDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		2BD0DD10284AB23800368BCE /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +166,7 @@
 		2BDC6E0E284A8891000DBD54 /* FavoritePlacesApp */ = {
 			isa = PBXGroup;
 			children = (
+				2B8AB9062853CFA900B616E9 /* Protocols */,
 				2B8AB9002852A56000B616E9 /* ViewControllers */,
 				2B8AB8FF2852A53900B616E9 /* Services */,
 				2BD0DD10284AB23800368BCE /* Models */,
@@ -294,6 +305,7 @@
 				2B1CD520284F526300397D59 /* RaitingControlStackView.swift in Sources */,
 				2BD0DD16284BE60E00368BCE /* NewPlaceTableViewController.swift in Sources */,
 				2BDC6E10284A8891000DBD54 /* AppDelegate.swift in Sources */,
+				2B8AB9082853CFCE00B616E9 /* MapViewControllerDelegate.swift in Sources */,
 				2BD0DD0D284A8EE600368BCE /* MainViewController.swift in Sources */,
 				2BA575DD28513AEE00F0EB93 /* MapViewController.swift in Sources */,
 				2BD0DD38284CEDD500368BCE /* StorageManager.swift in Sources */,
@@ -451,6 +463,9 @@
 				DEVELOPMENT_TEAM = RB3BCBLCA6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "FavoritePlacesApp/Support files/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Liked places";
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) photo use";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For directions to your favorite place, and also get place's address";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -480,6 +495,9 @@
 				DEVELOPMENT_TEAM = RB3BCBLCA6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "FavoritePlacesApp/Support files/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Liked places";
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) photo use";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For directions to your favorite place, and also get place's address";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

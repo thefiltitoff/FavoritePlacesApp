@@ -7,7 +7,6 @@
 //  
 
 
-import UIKit
 import MapKit
 
 class MapManager {
@@ -155,7 +154,9 @@ class MapManager {
     }
     
     // Setting up request for calculation route
-    func createDirectionsRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request? {
+    func createDirectionsRequest(
+        from coordinate: CLLocationCoordinate2D
+    ) -> MKDirections.Request? {
         guard let destinationCoordenate = placeCoordinate else { return nil }
         let startingLocation = MKPlacemark(coordinate: coordinate)
         let destinationLocation = MKPlacemark(coordinate: destinationCoordenate)
@@ -172,7 +173,11 @@ class MapManager {
     }
     
     // Changing view's zone of map by the user route
-    func startTrackingUserLocation(for mapView: MKMapView, and location: CLLocation? , closure: (_ currentLocation: CLLocation) -> ()) {
+    func startTrackingUserLocation(
+        for mapView: MKMapView,
+        and location: CLLocation? ,
+        closure: (_ currentLocation: CLLocation) -> ()
+    ) {
         
         guard let location = location else { return }
         let center = getCenterLocation(for: mapView)
