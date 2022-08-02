@@ -14,11 +14,12 @@ import CoreLocation
 class MapViewController: UIViewController {
     
     let mapManager = MapManager()
+    let annotationIdentifier = "annotationIdentifier"
+    
+    var incomeSegueIndentifier = ""
+    
     var mapViewControllerDelegate: MapViewControllerDelegate?
     var place = Place()
-    
-    let annotationIdentifier = "annotationIdentifier"
-    var incomeSegueIndentifier = ""
     
     var previousLocation: CLLocation? {
         didSet {
@@ -27,7 +28,7 @@ class MapViewController: UIViewController {
                 and: previousLocation) { currentLocation in
                     self.previousLocation = currentLocation
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
                         self.mapManager.showUserLocation(mapView: self.mapView)
                     }
                 }
@@ -113,7 +114,7 @@ extension MapViewController: MKMapViewDelegate {
         let geocoder = CLGeocoder()
         
         if incomeSegueIndentifier == "showPlace" && previousLocation != nil {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
                 self.mapManager.showUserLocation(mapView: self.mapView)
             }
         }
@@ -121,13 +122,13 @@ extension MapViewController: MKMapViewDelegate {
         geocoder.cancelGeocode()
         
         geocoder.reverseGeocodeLocation(center) { placemarks, error in
-            
             if let error = error {
                 print(error)
                 return
             }
             
             guard let placemarks = placemarks else { return }
+            
             let placemark = placemarks.first
             let city = placemark?.locality
             let streetName = placemark?.thoroughfare
@@ -154,8 +155,7 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
         
-        renderer.strokeColor = .blue
-        
+        renderer.strokeColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         return renderer
     }
 }
